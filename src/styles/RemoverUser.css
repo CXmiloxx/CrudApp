@@ -1,0 +1,54 @@
+.remover-user-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #ff9966, #ff5e62);
+    animation: fadeIn 1s ease-in-out;
+}
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.button-group button {
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-danger {
+    background-color: #d9534f;
+    border: none;
+    border-radius: 50px;
+}
+
+.btn-danger:hover {
+    background-color: #c9302c;
+    box-shadow: 0 8px 15px rgba(255, 0, 0, 0.3);
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    border-radius: 50px;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    box-shadow: 0 8px 15px rgba(108, 117, 125, 0.3);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

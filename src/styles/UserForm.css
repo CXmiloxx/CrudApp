@@ -1,0 +1,91 @@
+.form-container {
+    padding: 2rem;
+    background-color: #f9f9f9; /* Fondo claro */
+    border-radius: 8px; /* Esquinas redondeadas */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    max-width: 400px; /* Ajustar el ancho máximo */
+    margin-left: auto; /* Centrando el contenedor */
+    margin-right: auto; /* Centrando el contenedor */
+    margin-top: 5%; /* Espacio superior */
+    text-align: center; /* Centrar el texto */
+    transition: transform 0.3s ease; /* Transición suave */
+    position: relative; /* Para posicionar el efecto del arcoíris */
+    overflow: hidden; /* Para ocultar las partes que sobresalen del borde */
+    display: flex;
+    flex-direction: column; /* Alinear los elementos en vertical */
+    align-items: center; /* Alinear los elementos en el centro vertical */
+    justify-content: center; /* Alinear los elementos en el centro horizontal */
+    z-index: 1; /* Para que el contenedor sea visible en caso de superposiciones */
+    animation: rainbow-border 5s infinite; /* Animación de arcoíris */
+    animation-timing-function: ease-in-out; /* Efecto de animación suave */
+    animation-delay: 1s; /* Adelanto de la animación */
+    animation-iteration-count: infinite; /* Repetir infinitamente */
+    animation-fill-mode: forwards; /* Restablecer la animación al finalizar */
+    border: 6px solid; /* Grosor del borde más sutil */
+}
+
+/* Animación de arcoíris mejorada */
+@keyframes rainbow-border {
+    0% {
+        border-color: red;
+    }
+    14% {
+        border-color: orange;
+    }
+    28% {
+        border-color: yellow;
+    }
+    42% {
+        border-color: green;
+    }
+    57% {
+        border-color: blue;
+    }
+    71% {
+        border-color: indigo;
+    }
+    85% {
+        border-color: violet;
+    }
+    100% {
+        border-color: red;
+    }
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.input-icon {
+    position: absolute;
+    right: -50px; /* Espacio desde la derecha */
+    top: 50%;
+    transform: translateY(-50%); /* Centrar verticalmente */
+    color: #007bff; /* Color del icono */
+}
+
+.btn-submit {
+    background-color: #007bff; /* Color del botón */
+    border: none; /* Sin borde */
+    color: white; /* Texto blanco */
+    transition: background-color 0.3s ease; /* Transición suave */
+}
+
+.btn-submit:hover {
+    background-color: #0056b3; /* Color del botón al pasar el mouse */
+}
+
+.animated-form {
+    animation: fadeIn 0.5s ease-in-out; /* Animación de entrada */
+}
+
+/* Efecto de fadeIn */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
