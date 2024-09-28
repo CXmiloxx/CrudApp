@@ -5,8 +5,10 @@ import Input from "../UI/Input";
 import Button from "../UI/Button";
 import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa';
 import '../../styles/UserForm.css';
+import { useNavigate, } from "react-router-dom";
 
 export default function UserForm() {
+    const navigate = useNavigate();
     const [values, setValues] = useState({
         nombre: '',
         apellido: '',
@@ -50,6 +52,7 @@ export default function UserForm() {
                                 contra: ''
                             });
                         }
+                        navigate('/usuarios');
                     });
                 } else {
                     throw new Error(`${data.message}`);
