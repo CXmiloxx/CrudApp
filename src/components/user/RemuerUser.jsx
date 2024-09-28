@@ -24,11 +24,12 @@ export default function RemoverUser() {
             if (result.isConfirmed) {
                 remove(`/Usuarios/DELETE/${user.id}`)
                     .then((data) => {
-                        console.log(data);
-                        Swal.fire(
-                            '¡Usuario eliminado!',
-                            'El usuario ha sido eliminado correctamente.',
-                            'success'
+                        Swal.fire({
+                            title: 'Usuario eliminado correctamente',
+                            text: `${data.message}`,
+                            icon:'success',
+                            confirmButtonText: 'Continuar'
+                        }
                         );
                         navigate('/usuarios');
                     })
