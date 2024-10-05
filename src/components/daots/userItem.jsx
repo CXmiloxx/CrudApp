@@ -6,11 +6,11 @@ export default function UserItem({ users }) {
     const navigate = useNavigate();
 
     const handleEdit = (user) => {
-        navigate(`/usuarios/update/${user.id}`, { state: { user } });
+        navigate(`/datos/update/${user.idDatos}`, { state: { user } });
     };
 
     const handleDelete = (user) => {
-        navigate(`/usuarios/delete/${user.id}`, { state: { user } });
+        navigate(`/datos/delete/${user.idDatos}`, { state: { user } });
     };
 
     return (
@@ -26,21 +26,21 @@ export default function UserItem({ users }) {
                             <tr>
                                 <th>ID</th>
                                 <th>Nombre</th>
-                                <th>Apellido</th>
+                                <th>Direccion</th>
                                 <th>Correo</th>
-                                <th>Contraseña</th>
+                                <th>telefono</th>
                                 <th>Editar</th>
                                 <th>Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
                             {users.map((user) => (
-                                <tr key={user.id}>
-                                    <td>{user.id}</td>
+                                <tr key={user.idDatos}>
+                                    <td>{user.idDatos}</td>
                                     <td>{user.nombre}</td>
-                                    <td>{user.apellido}</td>
-                                    <td>{user.email}</td>
-                                    <td>{user.contra}</td>
+                                    <td>{user.direccion}</td>
+                                    <td>{user.correo}</td>
+                                    <td>{user.telefono}</td>
                                     <td>
                                         <button
                                             className="btn btn-info btn-sm"

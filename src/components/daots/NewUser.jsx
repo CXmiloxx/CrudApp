@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Input from "../UI/Input";
@@ -6,14 +6,24 @@ import Button from "../UI/Button";
 import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa';
 import '../../styles/UserForm.css';
 import { useNavigate, } from "react-router-dom";
+import { post } from "../../services/httpService";
 
-export default function UserForm() {
+export default function NewUser() {
+    const [idUsuario, setIdUsuario] = useState('');
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const storedIdUsuario = localStorage.getItem('idUsuario');
+        if (storedIdUsuario) {
+            setIdUsuario(storedIdUsuario);
+        }
+    },[])
+
     const [values, setValues] = useState({
         nombre: '',
-        apellido: '',
-        email: '',
-        contra: ''
+        direccion: '',
+        correo: '',
+        telefono: ''
     });
 
     const handleChange = (e) => {
@@ -21,52 +31,41 @@ export default function UserForm() {
         setValues({ ...values, [name]: value });
     };
 
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        fetch('https://appcrudphp.cleverapps.io/Usuarios/POST', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(values)
+        post('/datos/Post/',{
+            nombre: values.nombre,
+            direccion: values.direccion,
+            correo: values.correo,
+            telefono: values.telefono,
+            idUsuario : idUsuario
         })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Error al crear el usuario');
-                }
-                return response.json();
-            })
-            .then((data) => {
-                if (data.status) {
-                    Swal.fire({
-                        title: 'Usuario creado correctamente',
-                        icon: 'success',
-                        confirmButtonText: 'Continuar'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            setValues({
-                                nombre: '',
-                                apellido: '',
-                                email: '',
-                                contra: ''
-                            });
-                        }
-                        navigate('/login');
-                    });
-                } else {
-                    throw new Error(`${data.message}`);
-                }
-            })
-            .catch((error) => {
-                console.error(error);
+        .then((response) =>{
+            console.log(response)
+            console.log(idUsuario)
+            if(response.status){
+                console.log(response)
+                Swal.fire({
+                    title: 'Usuario registrado correctamente!',
+                    icon:'success',
+                    text: response.message,
+                    confirmButtonText: 'Aceptar',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        navigate(-1);
+                    }
+                });
+            }else{
                 Swal.fire({
                     title: 'Error',
-                    text: error.message,
+                    text: response.message,
                     icon: 'error',
-                    confirmButtonText: 'Volver a intentar'
+                    confirmButtonText: 'Aceptar',
                 });
-            });
+            }
+        })
     };
 
     return (
@@ -86,10 +85,10 @@ export default function UserForm() {
                 </div>
                 <div className="input-group">
                     <Input
-                        label="Apellido"
+                        label="Direccion"
                         type="text"
-                        value={values.apellido}
-                        name="apellido"
+                        value={values.direccion}
+                        name="direccion"
                         onChange={handleChange}
                         required
                     />
@@ -99,8 +98,8 @@ export default function UserForm() {
                     <Input
                         label="Correo"
                         type="email"
-                        value={values.email}
-                        name="email"
+                        value={values.correo}
+                        name="correo"
                         onChange={handleChange}
                         required
                     />
@@ -108,10 +107,10 @@ export default function UserForm() {
                 </div>
                 <div className="input-group">
                     <Input
-                        label="Contraseña"
-                        type="password"
-                        value={values.contra}
-                        name="contra"
+                        label="Telefono"
+                        type="text"
+                        value={values.telefono}
+                        name="telefono"
                         onChange={handleChange}
                         required
                     />

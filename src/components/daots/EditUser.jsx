@@ -13,39 +13,41 @@ export default function EditUser() {
     const { user } = location.state || {};
 
     const [updatedUser, setUpdatedUser] = useState({
-        id: user?.id || '',
+        id: user?.idDatos || '',
         nombre: user?.nombre || '',
-        apellido: user?.apellido || '',
-        contra: user?.contra || '',
-        email: user?.email || '',
+        direccion: user?.direccion || '',
+        telefono: user?.telefono || '',
+        correo: user?.correo || '',
     });
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setUpdatedUser({ ...updatedUser, [name]: value });
+    };
 
     const handleUpdate = async (e) => {
         e.preventDefault();
 
-        put(`/Usuarios/PUT/${user.id}`, {
+        put(`/datos/Put/${user.idDatos}`, {
             nombre: updatedUser.nombre,
-            apellido: updatedUser.apellido,
-            email: updatedUser.email,
-            contra: updatedUser.contra,
+            direccion: updatedUser.direccion,
+            correo: updatedUser.correo,
+            telefono: updatedUser.telefono,
         })
-        .then((response) => {
-            Swal.fire({
-                title: 'Usuario actualizado correctamente!',
-                icon: 'success',
-                text: response.message,
-                confirmButtonText: 'Aceptar',
+            .then((response) => {
+                if(response.status){
+
+                    Swal.fire({
+                        title: 'Datos actualizados correctamente!',
+                        icon:'success',
+                        text: response.message,
+                        confirmButtonText: 'Aceptar',
+                    })
+                    navigate('/datos');
+                }
+                else{
+                    throw new Error(response.message);
+                }
             });
-            navigate('/usuarios');
-        })
-        .catch((error) => {
-            Swal.fire({
-                title: 'Error',
-                text: error.message,
-                icon: 'error',
-                confirmButtonText: 'Volver a intentar'
-            });
-        });
     };
 
     return (
@@ -55,38 +57,42 @@ export default function EditUser() {
                     <label>Nombre:</label>
                     <Input
                         type="text"
+                        name='nombre'
                         value={updatedUser.nombre}
-                        onChange={(e) => setUpdatedUser({ ...updatedUser, nombre: e.target.value })}
+                        onChange={handleChange}
                         required
                         className="input-field"
                     />
                 </div>
                 <div className="form-group">
-                    <label>Apellido:</label>
+                    <label>Direccion:</label>
                     <Input
                         type="text"
-                        value={updatedUser.apellido}
-                        onChange={(e) => setUpdatedUser({ ...updatedUser, apellido: e.target.value })}
+                        name='direccion'
+                        value={updatedUser.direccion}
+                        onChange={handleChange}
                         required
                         className="input-field"
                     />
                 </div>
                 <div className="form-group">
-                    <label>Email:</label>
+                    <label>Correo:</label>
                     <Input
                         type="email"
-                        value={updatedUser.email}
-                        onChange={(e) => setUpdatedUser({ ...updatedUser, email: e.target.value })}
+                        name='correo'
+                        value={updatedUser.correo}
+                        onChange={handleChange}
                         required
                         className="input-field"
                     />
                 </div>
                 <div className="form-group">
-                    <label>Contraseña:</label>
+                    <label>telefono:</label>
                     <Input
-                        type="password"
-                        value={updatedUser.contra}
-                        onChange={(e) => setUpdatedUser({ ...updatedUser, contra: e.target.value })}
+                        type="number"
+                        name='telefono'
+                        value={updatedUser.telefono}
+                        onChange={handleChange}
                         required
                         className="input-field"
                     />

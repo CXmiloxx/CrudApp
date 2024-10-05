@@ -4,6 +4,8 @@ import CreateUser from '../pages/CreateUser'
 import ViewUser from '../pages/ViewUser'
 import DeleteUser from '../pages/DeleteUser'
 import UpdateUser from '../pages/UpdateUser'
+import Login from '../pages/Login'
+import NewUser from '../components/daots/NewUser'
 
 export default function AppRouter() {
     return (
@@ -11,10 +13,12 @@ export default function AppRouter() {
             <HashRouter>
                 <Routes>
                 <Route exact path="/" element={<Home/>} />
-                <Route path="/usuarios/registro" element={<CreateUser/>} />
-                <Route path="/usuarios/update/:idUsuario" element={<UpdateUser/>} />
-                <Route path="/usuarios/delete/:idUsuario" element={<DeleteUser/>} />
-                <Route path="/usuarios" element={<ViewUser/>} />
+                <Route path="registro" element={<CreateUser/>} />
+                <Route path="/login" element={<Login/>} />
+                <Route path="usuarios/registro" element={<NewUser/>} />
+                <Route path="/datos/update/:idUsuario" element={<UpdateUser/>} />
+                <Route path="/datos/delete/:idUsuario" element={<DeleteUser/>} />
+                <Route path="/datos" element={<ViewUser/>} />
                 </Routes>
             </HashRouter>
         </div>

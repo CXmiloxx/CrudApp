@@ -1,39 +1,52 @@
-import { Link } from "react-router-dom";
-import '../styles/Home.css';
+import style from '../styles/Home.module.css';
+import Nav from '../components/UI/Nav';
 
 export default function Home() {
     return (
-        <div className="home-container">
-            <h1 className="home-title">Bienvenido a la Aplicación de Gestión de Usuarios</h1>
-            <p className="home-description">
-                Esta aplicación permite gestionar la información de los usuarios a través de varias rutas.
-            </p>
-            <p className="api-explanation">
-                La API permite las siguientes operaciones:
-            </p>
-            <ul className="api-list">
-                <li><strong>GET /usuarios:</strong> Obtiene la lista completa de usuarios registrados.</li>
-                <li><strong>POST /usuarios:</strong> Crea un nuevo usuario en la base de datos.</li>
-                <li><strong>PUT /usuarios/:id:</strong> Actualiza la información de un usuario existente.</li>
-                <li><strong>DELETE /usuarios/:id:</strong> Elimina un usuario de la base de datos.</li>
-            </ul>
+        <div>
+            <Nav />
+            <div className={style.homeContainer}>
+                <h1 className={style.homeTitle}>Bienvenido a la Plataforma de Gestión</h1>
 
-            <div className="routes-grid">
-                <div className="route-card">
-                    <h2>Lista de Usuarios</h2>
-                    <p>Consulta la lista completa de usuarios registrados.</p>
-                    <Link to="/usuarios" className="route-link">
-                        Ver lista de usuarios
-                    </Link>
-                </div>
+                <section className={style.section}>
+                    <h2 className={style.sectionTitle}>¿Qué es esta aplicación?</h2>
+                    <p className={style.sectionText}>
+                        Esta plataforma te permite gestionar la información personal de los usuarios y administrar datos de forma segura. Desde el perfil de cada usuario, se pueden llevar a cabo diversas acciones relacionadas con la administración de sus datos.
+                    </p>
+                </section>
 
-                <div className="route-card">
-                    <h2>Crear un Nuevo Usuario</h2>
-                    <p>Registra un nuevo usuario en la base de datos.</p>
-                    <Link to="/usuarios/registro" className="route-link">
-                        Crear nuevo usuario
-                    </Link>
-                </div>
+                <section className={style.section}>
+                    <h2 className={style.sectionTitle}>¿Cómo funciona?</h2>
+                    <ul className={style.infoList}>
+                        <li className={style.listItem}>
+                            <strong>Inicio de Sesión:</strong> Para acceder a las funcionalidades principales, debes iniciar sesión con tu cuenta. Si no tienes una cuenta, puedes registrarte.
+                        </li>
+                        <li className={style.listItem}>
+                            <strong>Gestión de Datos:</strong> Una vez que hayas iniciado sesión, puedes gestionar los datos relacionados contigo, como tu nombre, teléfono, correo y dirección.
+                        </li>
+                        <li className={style.listItem}>
+                            <strong>Seguridad:</strong> Tu información está protegida y solo tú puedes ver y modificar tus datos.
+                        </li>
+                    </ul>
+                </section>
+
+                <section className={style.section}>
+                    <h2 className={style.sectionTitle}>Restricciones</h2>
+                    <p className={style.sectionText}>
+                        Para proteger la privacidad y seguridad de los usuarios, no es posible realizar las siguientes acciones sin haber iniciado sesión:
+                    </p>
+                    <ul className={style.restrictionList}>
+                        <li className={style.listItem}>
+                            No puedes insertar ni modificar datos si no has iniciado sesión.
+                        </li>
+                        <li className={style.listItem}>
+                            La consulta de datos está limitada a la cuenta del usuario autenticado.
+                        </li>
+                        <li className={style.listItem}>
+                            No se permite modificar o eliminar información de otros usuarios.
+                        </li>
+                    </ul>
+                </section>
             </div>
         </div>
     );

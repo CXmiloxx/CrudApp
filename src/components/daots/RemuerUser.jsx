@@ -22,24 +22,25 @@ export default function RemoverUser() {
         })
         .then((result) => {
             if (result.isConfirmed) {
-                remove(`/Usuarios/DELETE/${user.id}`)
+                remove(`/datos/Delete/${user.idDatos}`)
                     .then((data) => {
-                        Swal.fire({
-                            title: 'Usuario eliminado correctamente',
-                            text: `${data.message}`,
-                            icon:'success',
-                            confirmButtonText: 'Continuar'
+                        if(data.status){
+                            Swal.fire({
+                                title: 'Usuario eliminado correctamente',
+                                icon:'success',
+                                confirmButtonText: 'Continuar'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    navigate('/datos');
+                                }
+                            });
+                        }else{
+                            Swal.fire(
+                                'Error al eliminar',
+                                data.message,
+                                'error'
+                            );
                         }
-                        );
-                        navigate('/usuarios');
-                    })
-                    .catch((error) => {
-                        console.error(error);
-                        Swal.fire({
-                            title: 'Error al eliminar el usuario',
-                            text: `${error.message}`,
-                            icon: 'error',
-                        });
                     });
             } else {
                 Swal.fire(

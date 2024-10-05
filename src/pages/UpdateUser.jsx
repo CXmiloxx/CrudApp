@@ -1,5 +1,4 @@
-import EditUser from "../components/user/EditUser";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import EditUser from "../components/daots/EditUser";
 
 export default function UpdateUser() {
     return (

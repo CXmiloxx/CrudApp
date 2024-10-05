@@ -1,4 +1,4 @@
-import RemuerUser from '../components/user/RemuerUser'
+import RemuerUser from '../components/daots/RemuerUser'
 
 export default function DeleteUser() {
     return (
