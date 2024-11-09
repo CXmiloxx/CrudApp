@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import { remove } from "../../services/httpService";
 import '../../styles//RemoverUser.css';
 
-export default function RemoverUser() {
+export default function RemoveHabit() {
     const navigate = useNavigate();
     const location = useLocation();
     const { user } = location.state || {};

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import '../../styles/Input.css';
+import styles from '../../styles/components/Input.module.css';
 
 const Input = ({ label, type = 'text', value, name, onChange, required = false }) => {
     const [showPassword, setShowPassword] = useState(false);
@@ -11,19 +11,19 @@ const Input = ({ label, type = 'text', value, name, onChange, required = false }
     };
 
     return (
-        <div className="input-container">
-            <label className="input-label">{label}</label>
-            <div className="input-with-icon">
+        <div className={styles.inputContainer}>
+            <label className={styles.label}>{label}</label>
+            <div className={styles.inputWithIcon}>
                 <input
                     type={showPassword ? 'text' : type}
-                    className="input-field"
+                    className={styles.inputField}
                     value={value}
                     name={name}
                     onChange={onChange}
                     required={required}
                 />
                 {type === 'password' && (
-                    <div className="eye-icon" onClick={togglePasswordVisibility}>
+                    <div className={styles.eyeIcon} onClick={togglePasswordVisibility}>
                         {showPassword ? <FaEyeSlash /> : <FaEye />}
                     </div>
                 )}

@@ -1,0 +1,94 @@
+.formContainer {
+    padding: 3rem;
+    background: linear-gradient(135deg, #0e031b 0%, #032245 100%);
+    border-radius: 15px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+    max-width: 450px;
+    margin: 1% auto;
+    height: 100%;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    animation: fadeIn 0.8s ease-in-out;
+    transition: transform 0.3s ease;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+.inputGroup {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.inputIcon {
+    position: absolute;
+    right: 20px;
+    top: 75%;
+    right: -6%;
+    transform: translateY(-100%);
+    color: #0f81d3;
+    transition: color 0.3s ease;
+}
+.containerButton{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.buttonSubmit {
+    background-color: #1a1818;
+    border: none;
+    color: white;
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 25px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.buttonSubmit:hover {
+    transform: scale(1.05);
+    background-color: #030303;
+}
+
+.animatedForm {
+    animation: formEnter 0.5s ease-in-out;
+}
+
+@keyframes formEnter {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .formContainer {
+        padding: 2rem;
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .inputIcon {
+        right: -6%;
+        top: 75%;
+    }
+
+    .btnSubmit {
+        padding: 0.7rem 1.5rem;
+    }
+}

@@ -6,7 +6,7 @@ import Input from "../UI/Input";
 import { put } from "../../services/httpService";
 import '../../styles//EditUser.css';
 
-export default function EditUser() {
+export default function EditHabit() {
     const location = useLocation();
     const navigate = useNavigate();
 

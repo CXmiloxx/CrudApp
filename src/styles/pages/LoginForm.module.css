@@ -1,0 +1,142 @@
+.loginContainer {
+    padding: 3rem;
+    background: linear-gradient(250deg, #101315 0%, #032245 100%);
+    border-radius: 20px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 450px;
+    margin: 10% auto;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    animation: fadeIn 0.8s ease-in-out;
+    transition: transform 0.3s ease;
+}
+
+.title {
+    font-size: 2.3rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+.inputGroup {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.inputIcon {
+    position: absolute;
+    right: -6%;
+    top: 65%;
+    transform: translateY(-50%);
+    color: #4fa9da;
+    transition: color 0.3s ease;
+}
+
+.containerButton {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.buttonSubmit {
+    background-color: #4fa9da; 
+    border: none;
+    color: white;
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 25px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.buttonSubmit:hover {
+    background-color: #006a7b;
+    transform: scale(1.05);
+}
+
+.animatedForm {
+    animation: formEnter 0.5s ease-in-out;
+}
+
+@keyframes formEnter {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilos responsivos */
+@media (max-width: 1024px) {
+    .loginContainer {
+        padding: 2rem;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .inputIcon {
+        right: 5%;
+        top: 50%;
+    }
+
+    .buttonSubmit {
+        padding: 0.7rem 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .loginContainer {
+        padding: 1.5rem;
+        margin: 15% auto;
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .inputGroup {
+        margin-bottom: 1.2rem;
+    }
+
+    .inputIcon {
+        right: 15%;
+        top: 50%;
+    }
+
+    .buttonSubmit {
+        padding: 0.7rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .loginContainer {
+        margin: 20% auto;
+        padding: 1rem;
+        
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .inputIcon {
+        right: -5%;
+        top: 70%;
+    }
+
+    .buttonSubmit {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}

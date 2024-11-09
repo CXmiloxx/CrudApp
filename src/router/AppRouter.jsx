@@ -1,24 +1,26 @@
 import { HashRouter, Route, Routes } from 'react-router-dom'
-import Home from '../pages/Home'
-import CreateUser from '../pages/CreateUser'
-import ViewUser from '../pages/ViewUser'
-import DeleteUser from '../pages/DeleteUser'
-import UpdateUser from '../pages/UpdateUser'
+
 import Login from '../pages/Login'
-import NewUser from '../components/daots/NewUser'
+import CreateUser from '../pages/CreateUser'
+import App from '../App'
+import Nav from '../components/UI/Nav'
+import Dashboard from '../pages/Dashboard'
+import NewHabit from '../components/habits/NewHabit'
+
+
 
 export default function AppRouter() {
     return (
         <div>
             <HashRouter>
+                <Nav/>
                 <Routes>
-                <Route exact path="/" element={<Home/>} />
-                <Route path="registro" element={<CreateUser/>} />
+                <Route exact path="/" element={<App/>} />
                 <Route path="/login" element={<Login/>} />
-                <Route path="usuarios/registro" element={<NewUser/>} />
-                <Route path="/datos/update/:idUsuario" element={<UpdateUser/>} />
-                <Route path="/datos/delete/:idUsuario" element={<DeleteUser/>} />
-                <Route path="/datos" element={<ViewUser/>} />
+                <Route path="registro" element={<CreateUser/>} />
+                <Route path="dashboard" element={<Dashboard/>} />
+                <Route path="/habit" element={<NewHabit />} />
+
                 </Routes>
             </HashRouter>
         </div>

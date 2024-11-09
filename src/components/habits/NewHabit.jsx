@@ -3,27 +3,27 @@ import Swal from "sweetalert2";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Input from "../UI/Input";
 import Button from "../UI/Button";
-import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa';
-import '../../styles/UserForm.css';
+import { FaUser } from 'react-icons/fa';
+// import '../../styles/UserForm.css';
 import { useNavigate, } from "react-router-dom";
 import { post } from "../../services/httpService";
 
-export default function NewUser() {
+export default function NewHabit() {
     const [idUsuario, setIdUsuario] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
         const storedIdUsuario = localStorage.getItem('idUsuario');
+        console.log("Stored idUsuario:", storedIdUsuario); // Verifica el valor aquí
         if (storedIdUsuario) {
             setIdUsuario(storedIdUsuario);
         }
-    },[])
+    }, []);
+    
 
     const [values, setValues] = useState({
         nombre: '',
-        direccion: '',
-        correo: '',
-        telefono: ''
+        descripcion: '',
     });
 
     const handleChange = (e) => {
@@ -34,13 +34,9 @@ export default function NewUser() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        post('/datos/Post/',{
+        post( `/habitos/CreateHabit/${idUsuario}` ,{
             nombre: values.nombre,
-            direccion: values.direccion,
-            correo: values.correo,
-            telefono: values.telefono,
-            idUsuario : idUsuario
+            descripcion: values.descripcion,
         })
         .then((response) =>{
             console.log(response)
@@ -70,11 +66,11 @@ export default function NewUser() {
 
     return (
         <div className="form-container ">
-            <h1 className="titulo text-primary text-center">Registro</h1>
+            <h1 className="titulo text-primary text-center">Crear Habito</h1>
             <form onSubmit={handleSubmit} className="animated-form">
                 <div className="input-group">
                     <Input
-                        label="Nombre"
+                        label="Nombre del Habitos "
                         type="text"
                         value={values.nombre}
                         name="nombre"
@@ -85,36 +81,14 @@ export default function NewUser() {
                 </div>
                 <div className="input-group">
                     <Input
-                        label="Direccion"
+                        label="Descripcion del Habito "
                         type="text"
-                        value={values.direccion}
-                        name="direccion"
+                        value={values.descripcion}
+                        name="descripcion"
                         onChange={handleChange}
                         required
                     />
                     <FaUser className="input-icon" />
-                </div>
-                <div className="input-group">
-                    <Input
-                        label="Correo"
-                        type="email"
-                        value={values.correo}
-                        name="correo"
-                        onChange={handleChange}
-                        required
-                    />
-                    <FaEnvelope className="input-icon" />
-                </div>
-                <div className="input-group">
-                    <Input
-                        label="Telefono"
-                        type="text"
-                        value={values.telefono}
-                        name="telefono"
-                        onChange={handleChange}
-                        required
-                    />
-                    <FaLock className="input-icon" />
                 </div>
                 <div className="d-flex justify-content-center">
                     <Button type="submit" className="btn-submit">

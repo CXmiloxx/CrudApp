@@ -1,0 +1,24 @@
+:root {
+    --primary-bg: #0A0A0A;
+    --secondary-bg: #1B4B75;
+    --accent-color: #4FA9DA;
+    --primary-text: #FFFFFF;
+    --secondary-text: #AFAFAF;
+}
+
+body {
+    background-color: var(--primary-bg);
+    color: var(--primary-text);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4 {
+    color: var(--accent-color);
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+}

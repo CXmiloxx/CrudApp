@@ -1,27 +1,35 @@
-import { Link } from "react-router-dom"
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import styles from "../../styles/components/Nav.module.css";
 
 export default function Nav() {
+    const [isNavOpen, setIsNavOpen] = useState(false);
+
+    const toggleNav = () => {
+        setIsNavOpen(!isNavOpen);
+    };
+
     return (
-        <div>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <div className="container-fluid">
-                    <p className="navbar-brand">CrudApp</p>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div className="navbar-nav">
-                            <p className="nav-link active" aria-current="page">Home</p>
-                            <Link to={'/registro'}>
-                                <p className="nav-link">Register</p>
-                            </Link>
-                            <Link to={'/login'}>
-                                <p className="nav-link">Login</p>
-                            </Link>
-                        </div>
+        <div className={styles.navContainer}>
+            <nav className={styles.navBar}>
+                <p className={styles.navBrand}>Habit Tracker</p>
+                <button
+                    className={`${styles.navToggler} ${isNavOpen ? styles.open : ""}`}
+                    onClick={toggleNav}
+                >
+                    <span className={`${styles.navTogglerIcon} ${styles.line1}`}></span>
+                    <span className={`${styles.navTogglerIcon} ${styles.line2}`}></span>
+                    <span className={`${styles.navTogglerIcon} ${styles.line3}`}></span>
+                </button>
+
+                <div className={`${styles.navCollapse} ${isNavOpen ? styles.show : ""}`}>
+                    <div className={styles.navLinks}>
+                        <Link to="/" className={styles.navLink} onClick={toggleNav}>Home</Link>
+                        <Link to="/registro" className={styles.navLink} onClick={toggleNav}>Registrarse</Link>
+                        <Link to="/login" className={styles.navLink} onClick={toggleNav}>Iniciar Sesión</Link>
                     </div>
                 </div>
             </nav>
         </div>
-    )
+    );
 }

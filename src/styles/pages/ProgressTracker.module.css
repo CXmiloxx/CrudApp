@@ -1,0 +1,35 @@
+.progressTrackerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.progressTitle {
+    font-size: 1.5em;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.progressInfo {
+    width: 100%;
+    max-width: 400px;
+}
+
+.progressText {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .progressTitle {
+        font-size: 1.3em;
+    }
+    .progressText {
+        font-size: 1em;
+    }
+}

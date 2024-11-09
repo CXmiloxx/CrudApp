@@ -1,13 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import '../../styles//UserItem.css';
+import '../../styles//pages/UserItem.css';
 
 /* eslint-disable react/prop-types */
-export default function UserItem({ users }) {
+export default function HabitItem({ users }) {
     const navigate = useNavigate();
-
-    const handleEdit = (user) => {
-        navigate(`/datos/update/${user.idDatos}`, { state: { user } });
-    };
 
     const handleDelete = (user) => {
         navigate(`/datos/delete/${user.idDatos}`, { state: { user } });
@@ -26,29 +22,18 @@ export default function UserItem({ users }) {
                             <tr>
                                 <th>ID</th>
                                 <th>Nombre</th>
-                                <th>Direccion</th>
-                                <th>Correo</th>
-                                <th>telefono</th>
-                                <th>Editar</th>
+                                <th>fecha Creacion</th>
+                                <th>descripcion</th>
                                 <th>Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
                             {users.map((user) => (
-                                <tr key={user.idDatos}>
-                                    <td>{user.idDatos}</td>
+                                <tr key={user.idHabito}>
+                                    <td>{user.idHabito}</td>
                                     <td>{user.nombre}</td>
-                                    <td>{user.direccion}</td>
-                                    <td>{user.correo}</td>
-                                    <td>{user.telefono}</td>
-                                    <td>
-                                        <button
-                                            className="btn btn-info btn-sm"
-                                            onClick={() => handleEdit(user)}
-                                        >
-                                            Editar
-                                        </button>
-                                    </td>
+                                    <td>{user.fecha_creacion}</td>
+                                    <td>{user.descripcion}</td>
                                     <td>
                                         <button
                                             className="btn btn-danger btn-sm ms-2"

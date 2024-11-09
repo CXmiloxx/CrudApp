@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
 import { get } from "../../services/httpService";
-import UserItem from '../daots/userItem';
-import '../../styles//UserList.css'; 
+import UserItem from './HabitItem';
+import '../../styles/pages/UserList.css';
 
-export default function UserList() {
+export default function HabitList() {
     const [users, setUsers] = useState([]);
     const [idUsuario, setIdUsuario] = useState('');
 
@@ -21,10 +21,10 @@ export default function UserList() {
 
     useEffect(() => {
         if (idUsuario) {
-            get(`/datos/Get/${idUsuario}`)
+            get(`/habitos/GetHabit/${idUsuario}`)
             .then((data) => {
                 console.log(data);
-                setUsers(data.usuario || []);
+                setUsers(data.habitos || []);
             })
             .catch((error) => {
                 console.error('Error:', error);

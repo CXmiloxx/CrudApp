@@ -1,5 +1,3 @@
-const BASE_URL = 'https://appcrudphp.cleverapps.io';
-
 async function handleResponse(response) {
     if (!response) {
         const error = await response.json();
@@ -9,7 +7,7 @@ async function handleResponse(response) {
 }
 
 export async function get(endpoint) {
-    const response = await fetch(`${BASE_URL}${endpoint}`, {
+    const response = await fetch(import.meta.env.VITE_API_URL+`${endpoint}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -20,7 +18,7 @@ export async function get(endpoint) {
 }
 
 export async function post(endpoint, data) {
-    const response = await fetch(`${BASE_URL}${endpoint}`, {
+    const response = await fetch(import.meta.env.VITE_API_URL+`${endpoint}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -32,7 +30,7 @@ export async function post(endpoint, data) {
 }
 
 export async function put(endpoint, data) {
-    const response = await fetch(`${BASE_URL}${endpoint}`, {
+    const response = await fetch(import.meta.env.VITE_API_URL+`${endpoint}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -44,7 +42,7 @@ export async function put(endpoint, data) {
 }
 
 export async function remove(endpoint) {
-    const response = await fetch(`${BASE_URL}${endpoint}`, {
+    const response = await fetch(import.meta.env.VITE_API_URL+`${endpoint}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',

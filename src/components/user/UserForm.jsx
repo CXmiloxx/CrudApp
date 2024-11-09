@@ -2,10 +2,10 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Input from "../UI/Input";
-import Button from "../UI/Button";
 import { FaUser, FaEnvelope, FaLock } from 'react-icons/fa';
-import '../../styles/UserForm.css';
-import { useNavigate, } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import styles from "../../styles/pages/UserForm.module.css";
+import { post } from "../../services/httpService";
 
 export default function UserForm() {
     const navigate = useNavigate();
@@ -21,22 +21,15 @@ export default function UserForm() {
         setValues({ ...values, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        fetch('https://appcrudphp.cleverapps.io/Usuarios/POST', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(values)
+        await post('/usuarios/CreateUser', {
+            nombre: values.nombre,
+            apellido: values.apellido,
+            email: values.email,
+            contra: values.contra
         })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Error al crear el usuario');
-                }
-                return response.json();
-            })
             .then((data) => {
                 if (data.status) {
                     Swal.fire({
@@ -70,10 +63,10 @@ export default function UserForm() {
     };
 
     return (
-        <div className="form-container ">
-            <h1 className="titulo text-primary text-center">Registro</h1>
-            <form onSubmit={handleSubmit} className="animated-form">
-                <div className="input-group">
+        <div className={styles.formContainer}>
+            <h1 className={`${styles.title} text-primary text-center`}>Registro</h1>
+            <form onSubmit={handleSubmit} className={styles.animatedForm}>
+                <div className={styles.inputGroup}>
                     <Input
                         label="Nombre"
                         type="text"
@@ -82,9 +75,9 @@ export default function UserForm() {
                         onChange={handleChange}
                         required
                     />
-                    <FaUser className="input-icon" />
+                    <FaUser className={styles.inputIcon} />
                 </div>
-                <div className="input-group">
+                <div className={styles.inputGroup}>
                     <Input
                         label="Apellido"
                         type="text"
@@ -93,9 +86,9 @@ export default function UserForm() {
                         onChange={handleChange}
                         required
                     />
-                    <FaUser className="input-icon" />
+                    <FaUser className={styles.inputIcon} />
                 </div>
-                <div className="input-group">
+                <div className={styles.inputGroup}>
                     <Input
                         label="Correo"
                         type="email"
@@ -104,9 +97,9 @@ export default function UserForm() {
                         onChange={handleChange}
                         required
                     />
-                    <FaEnvelope className="input-icon" />
+                    <FaEnvelope className={styles.inputIcon} />
                 </div>
-                <div className="input-group">
+                <div className={styles.inputGroup}>
                     <Input
                         label="Contraseña"
                         type="password"
@@ -115,12 +108,12 @@ export default function UserForm() {
                         onChange={handleChange}
                         required
                     />
-                    <FaLock className="input-icon" />
+                    <FaLock className={styles.inputIcon} />
                 </div>
-                <div className="d-flex justify-content-center">
-                    <Button type="submit" className="btn-submit">
+                <div className={styles.containerButton}>
+                    <button type="submit" className={styles.buttonSubmit}>
                         Registrar
-                    </Button>
+                    </button>
                 </div>
             </form>
         </div>
