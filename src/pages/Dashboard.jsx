@@ -14,7 +14,7 @@ export default function Dashboard() {
                     <ProgressTracker />
                     <GoalProgress />
                 </section>
-
+                <hr />
                 <section className={style.section}>
                     <h2 className={style.sectionTitle}>Tus Hábitos Actuales</h2>
                     <HabitList />

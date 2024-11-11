@@ -6,16 +6,13 @@ export default function ProgressTracker() {
     const [progress, setProgress] = useState(0);
 
     const getProgress = () => {
-        // Aquí iría una llamada a tu API o lógica de cálculo
-        // Por ejemplo, la cantidad de hábitos completados sobre el total
-        // Vamos a usar un valor ficticio por ahora
-        const totalHabits = 10; // Total de hábitos
-        const completedHabits = 7; // Hábitos completados
+
+        const totalHabits = 10;
+        const completedHabits = 7;
         const progressPercentage = (completedHabits / totalHabits) * 100;
         setProgress(progressPercentage);
     };
 
-    // Llamamos a la función para obtener el progreso
     useEffect(() => {
         getProgress();
     }, []);

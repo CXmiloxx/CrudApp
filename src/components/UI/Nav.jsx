@@ -16,6 +16,7 @@ export default function Nav() {
                 <button
                     className={`${styles.navToggler} ${isNavOpen ? styles.open : ""}`}
                     onClick={toggleNav}
+                    aria-label="Toggle navigation"
                 >
                     <span className={`${styles.navTogglerIcon} ${styles.line1}`}></span>
                     <span className={`${styles.navTogglerIcon} ${styles.line2}`}></span>

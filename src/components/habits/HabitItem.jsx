@@ -1,51 +1,48 @@
 import { useNavigate } from "react-router-dom";
-import '../../styles//pages/UserItem.css';
+import styles from "../../styles/pages/HabitItem.module.css";
 
 /* eslint-disable react/prop-types */
-export default function HabitItem({ users }) {
+export default function HabitItem({ habitos }) {
     const navigate = useNavigate();
 
+
+
     const handleDelete = (user) => {
-        navigate(`/datos/delete/${user.idDatos}`, { state: { user } });
+        navigate(`/datos/delete/${user.idHabito}`, { state: { user } });
     };
 
     return (
-        <div className="user-item-container">
-            {users.length <= 0 ? (
-                <div className="no-users-message">
+        <div className={styles.userItemContainer}>
+            {habitos.length <= 0 ? (
+                <div className={styles.noHabitosMessage}>
                     <p>No hay usuarios registrados.</p>
                 </div>
             ) : (
-                <div className="table-responsive">
-                    <table className="table table-hover table-bordered">
-                        <thead className="thead-dark">
-                            <tr>
-                                <th>ID</th>
-                                <th>Nombre</th>
-                                <th>fecha Creacion</th>
-                                <th>descripcion</th>
-                                <th>Eliminar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {users.map((user) => (
-                                <tr key={user.idHabito}>
-                                    <td>{user.idHabito}</td>
-                                    <td>{user.nombre}</td>
-                                    <td>{user.fecha_creacion}</td>
-                                    <td>{user.descripcion}</td>
-                                    <td>
-                                        <button
-                                            className="btn btn-danger btn-sm ms-2"
-                                            onClick={() => handleDelete(user)}
-                                        >
-                                            Borrar
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                <div className={styles.cardContainer}>
+                    {habitos.map((user) => (
+                        <div key={user.idHabito} className={styles.userCard}>
+                            <div className={styles.userInfo}>
+                                <strong>Nombre:</strong>
+                                <p>{user.nombre}</p>
+                            </div>
+                            <div className={styles.userInfo}>
+                                <strong>Fecha Creación:</strong>
+                                <p>{user.fecha_creacion}</p>
+                            </div>
+                            <div className={styles.userInfo}>
+                                <strong>Descripción:</strong>
+                                <p>{user.descripcion}</p>
+                            </div>
+                            <div className={styles.btnContainer}>
+                                <button
+                                    className={`${styles.btn} ${styles.btnDanger}`}
+                                    onClick={() => handleDelete(user)}
+                                >
+                                    Borrar
+                                </button>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             )}
         </div>

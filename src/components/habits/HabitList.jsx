@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
 import { get } from "../../services/httpService";
 import UserItem from './HabitItem';
-import '../../styles/pages/UserList.css';
+import styles from '../../styles/pages/HabitList.module.css';
 
 export default function HabitList() {
     const [users, setUsers] = useState([]);
@@ -13,17 +12,13 @@ export default function HabitList() {
         const storedIdUsuario = localStorage.getItem('idUsuario');
         if (storedIdUsuario) {
             setIdUsuario(storedIdUsuario);
-        } else {
-            setIdUsuario('');
         }
-    },[])
+    }, []);
     
-
     useEffect(() => {
         if (idUsuario) {
             get(`/habitos/GetHabit/${idUsuario}`)
             .then((data) => {
-                console.log(data);
                 setUsers(data.habitos || []);
             })
             .catch((error) => {
@@ -32,19 +27,16 @@ export default function HabitList() {
         }
     }, [idUsuario]);
     
-
     return (
-        <div className="user-list-container container mt-4 p-4 shadow-sm">
-            <div className="header mb-3">
-                <Link to="/usuarios/registro">
-                    <button className="btn btn-success btn-add-user">
+        <div className={`${styles.userListContainer} container mt-4`}>
+            <div className={`${styles.header} mb-3`}>
+                <Link to="/new-habit">
+                    <button className={`${styles.btnAddUser} btn`}>
                         Añadir Usuario
                     </button>
                 </Link>
             </div>
-            <UserItem
-                users={users}
-            />
+            <UserItem habitos={users} />
         </div>
     );
 }

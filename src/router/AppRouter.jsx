@@ -19,7 +19,7 @@ export default function AppRouter() {
                 <Route path="/login" element={<Login/>} />
                 <Route path="registro" element={<CreateUser/>} />
                 <Route path="dashboard" element={<Dashboard/>} />
-                <Route path="/habit" element={<NewHabit />} />
+                <Route path="/new-habit" element={<NewHabit />} />
 
                 </Routes>
             </HashRouter>
